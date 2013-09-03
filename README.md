@@ -1,4 +1,8 @@
-js-debugging
-============
+Browser JavaScript Debugging
+============================
 
-Example code for JavaScript Debugging Talk @ Athens Software Dev Meetup
+# About
+* BS in CS @ UGA 2013
+* Master of Internet Technologies @ UGA's Terry College 2014
+
+
