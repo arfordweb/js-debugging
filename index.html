@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Some Application</title>
+    <meta charset="utf-8" />
+    
+<!--    <link rel="stylesheet" media="screen" href="./css/style.css" /> -->
+
+<style type="text/css">
+.hidden {
+	display: none;
+}
+</style>
+
+<script>
+// global app variables and config go here
+var app = {
+	"on_prod": false,				// for development, set to false
+	"debug_logging_enabled": true,	// used by cl() function; does no logging if this is false
+	"prevent_script_caching": true,	// turn off if you want Dev scripts to cache
+	"script_caching_number": 1,		// change to let scripts refresh once
+	"ie_firebug_lite": false,
+	// browser detection; actual detection comes later
+	"lt_ie8": false,				// false by default, updates in conditional comment below
+	"lt_ie9": false,				// false by default, updates in conditional comment below
+	"lt_ie10": false,				// false by default, updates in conditional comment below
+	"non_ie": false,				// false by default, updates in conditional comment below
+};
+
+// detect IE10
+/*@ if (/^10/.test(@_jscript_version)) { app.ie10 = true; } @*/
+
+</script>
+
+</head>
+<body>
+
+<!-- The beginning of the next div is wrapped in conditional comments so you can
+     use the below class names to target styles to specific version of IE.
+     The app.lt_ie* properties are also set to 'true' when appropriate -->
+     
+<!--     Assumes we're only supporting back to IE8         -->
+<!--[if lt IE 8]>  <div class="page_wrapper ie lt_ie8 lt_ie9 lt_ie10">
+	<script>app.lt_ie8=true; app.lt_ie9=true; app.lt_ie10=true;</script> <![endif]-->
+<!--[if IE 8]>     <div class="page_wrapper ie ie8 lt_ie9 lt_ie10">
+	<script>app.lt_ie9=true; app.lt_ie10=true;</script><![endif]-->
+<!--[if IE 9]>     <div class="page_wrapper ie ie9 lt_ie10">
+	<script>app.lt_ie10=true;</script> <![endif]-->
+<!--[if !IE]><!--> <div class="page_wrapper non_ie">
+	<script>app.non_ie=true;</script> <!--<![endif]-->
+
+
+<p>Look at the source and open your debugging tools.  Try this using Chrome DevTools, Firebug, Firefox's native inspector, IE Developer Toolbar, etc.</p>
+<p class="hidden">This is a hidden message!</p>
+
+
+</div><!-- end wrapping div -->
+    
+    <!-- keep scripts at the end of the body to keep page load times down -->
+    <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="./js/debugging_helpers.js"></script>
+    <script>
+    
+	cl("This will show up in the console.");
+	cl("This is the window object", window);
+	
+	ds(window); // add window object as first item in debugging stack
+	ds($("p.hidden")); // add jQuery object containing the above paragraph as the second
+	
+	/* in the debugging console, try:
+	
+	var x = ds(1);  // You'll have a reference to the jQuery object you can further manipulate
+	cl(x.html());
+	
+	*/
+    
+    </script>
+</body>
+</html>
